@@ -22,7 +22,7 @@ import com.billing.app.services.CashierService;
 @RestController
 @RequestMapping("cashier")
 // baseURL = http://localhost:8080/cashier
-@CrossOrigin(origins = "http://localhost:5173/")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class CashierController {
 
 	@Autowired
@@ -59,5 +59,4 @@ public class CashierController {
 		return new ResponseEntity<CashierModel>(cashierService.loginCashier(cashierEmail, cashierPassword),
 				HttpStatus.ACCEPTED);
 	}
-
 }

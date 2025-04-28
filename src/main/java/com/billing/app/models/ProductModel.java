@@ -20,6 +20,8 @@ public class ProductModel {
 	private String productImage;
 	@Column(name = "product_man_date")
 	private String productManDate;
+	@Column(name = "product_manufacturer")
+	private String productManufacturer;
 	@Column(name = "product_exp_date")
 	private String productExpDate;
 	@Column(name = "product_category")
@@ -93,20 +95,30 @@ public class ProductModel {
 		this.productQuantity = productQuantity;
 	}
 
+	public String getProductManufacturer() {
+		return productManufacturer;
+	}
+
+	public void setProductManufacturer(String productManufacturer) {
+		this.productManufacturer = productManufacturer;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductModel [productId=" + productId + ", productName=" + productName + ", productImage="
-				+ productImage + ", productManDate=" + productManDate + ", productExpDate=" + productExpDate
-				+ ", productCategory=" + productCategory + ", productPrice=" + productPrice + ", productQuantity="
-				+ productQuantity + "]";
+				+ productImage + ", productManDate=" + productManDate + ", productManufacturer=" + productManufacturer
+				+ ", productExpDate=" + productExpDate + ", productCategory=" + productCategory + ", productPrice="
+				+ productPrice + ", productQuantity=" + productQuantity + "]";
 	}
 
 	public ProductModel(Integer productId, String productName, String productImage, String productManDate,
-			String productExpDate, String productCategory, Double productPrice, Integer productQuantity) {
+			String productManufacturer, String productExpDate, String productCategory, Double productPrice,
+			Integer productQuantity) {
 		this.productId = productId;
 		this.productName = productName;
 		this.productImage = productImage;
 		this.productManDate = productManDate;
+		this.productManufacturer = productManufacturer;
 		this.productExpDate = productExpDate;
 		this.productCategory = productCategory;
 		this.productPrice = productPrice;

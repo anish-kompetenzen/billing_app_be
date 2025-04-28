@@ -53,4 +53,26 @@ public class ProductServImpl implements ProductService {
 	public List<ProductModel> viewProducts() {
 		return repository.findAll();
 	}
+
+	@Override
+	public ProductModel increaseProductQty(Integer id) {
+		Optional<ProductModel> op = repository.findById(id);
+		if (op.isPresent()) {
+			ProductModel pdt = op.get();
+			pdt.setProductQuantity(pdt.getProductQuantity() + 1);
+			return repository.save(pdt);
+		}
+		return new ProductModel();
+	}
+
+	@Override
+	public ProductModel decreaseProductQty(Integer id) {
+		Optional<ProductModel> op = repository.findById(id);
+		if (op.isPresent()) {
+			ProductModel pdt = op.get();
+			pdt.setProductQuantity(pdt.getProductQuantity() - 1);
+			return repository.save(pdt);
+		}
+		return new ProductModel();
+	}
 }
