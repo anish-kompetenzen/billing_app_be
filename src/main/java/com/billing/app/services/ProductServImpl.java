@@ -59,7 +59,11 @@ public class ProductServImpl implements ProductService {
 		Optional<ProductModel> op = repository.findById(id);
 		if (op.isPresent()) {
 			ProductModel pdt = op.get();
-			pdt.setProductQuantity(pdt.getProductQuantity() + 1);
+			if (pdt.getProductQuantity() >= 100) {
+				pdt.setProductQuantity(100);
+			} else {
+				pdt.setProductQuantity(pdt.getProductQuantity() + 1);
+			}
 			return repository.save(pdt);
 		}
 		return new ProductModel();
@@ -70,7 +74,11 @@ public class ProductServImpl implements ProductService {
 		Optional<ProductModel> op = repository.findById(id);
 		if (op.isPresent()) {
 			ProductModel pdt = op.get();
-			pdt.setProductQuantity(pdt.getProductQuantity() - 1);
+			if (pdt.getProductQuantity() <= 0) {
+				pdt.setProductQuantity(0);
+			} else {
+				pdt.setProductQuantity(pdt.getProductQuantity() - 1);
+			}
 			return repository.save(pdt);
 		}
 		return new ProductModel();

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,12 +38,23 @@ public class ProductController {
 	}
 
 	@PutMapping("inc/{id}")
-	public ProductModel increaseQuantity(@PathVariable Integer id) {
-		return productService.increaseProductQty(id);
+	public ResponseEntity<ProductModel> increaseQuantity(@PathVariable Integer id) {
+		return new ResponseEntity<>(productService.increaseProductQty(id), HttpStatus.ACCEPTED);
 	}
 
 	@PutMapping("dec/{id}")
-	public ProductModel decreaseQuantity(@PathVariable Integer id) {
-		return productService.decreaseProductQty(id);
+	public ResponseEntity<ProductModel> decreaseQuantity(@PathVariable Integer id) {
+		return new ResponseEntity<>(productService.decreaseProductQty(id), HttpStatus.ACCEPTED);
 	}
+
+	@DeleteMapping("{id}")
+	public ResponseEntity<ProductModel> deleteProduct(@PathVariable Integer id) {
+		return new ResponseEntity<>(productService.deleteProduct(id), HttpStatus.OK);
+	}
+
+	@PutMapping("")
+	public ResponseEntity<ProductModel> updateProduct(@RequestBody ProductModel model) {
+		return new ResponseEntity<>(productService.updateProduct(model), HttpStatus.ACCEPTED);
+	}
+
 }
