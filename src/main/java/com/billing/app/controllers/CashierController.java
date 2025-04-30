@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.billing.app.models.BillDTO;
 import com.billing.app.models.CashierModel;
 import com.billing.app.services.CashierService;
 
@@ -58,5 +59,12 @@ public class CashierController {
 			@RequestParam String cashierPassword) {
 		return new ResponseEntity<CashierModel>(cashierService.loginCashier(cashierEmail, cashierPassword),
 				HttpStatus.ACCEPTED);
+	}
+
+	@PostMapping("b")
+	public ResponseEntity<?> generateBill(@RequestParam String name, @RequestBody List<BillDTO> dto) {
+		System.out.println(name);
+		System.out.println(dto);
+		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 }
