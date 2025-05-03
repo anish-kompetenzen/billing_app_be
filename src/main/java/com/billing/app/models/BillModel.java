@@ -14,6 +14,8 @@ public class BillModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "bill_id")
 	private Integer billId;
+	@Column(name = "customer_id")
+	private Integer customerId;
 	@Column(name = "bill_time")
 	private String billTime;
 	@Column(name = "bill_date")
@@ -28,8 +30,8 @@ public class BillModel {
 	private Double productPrice;
 	@Column(name = "product_manufacturer")
 	private String productManufacturer;
-	@Column(name = "product_quantity")
-	private Integer productQuantity;
+	@Column(name = "product_purchase_quantity")
+	private Integer productPurchaseQuantity;
 
 	public Integer getBillId() {
 		return billId;
@@ -95,24 +97,33 @@ public class BillModel {
 		this.productManufacturer = productManufacturer;
 	}
 
-	public Integer getProductQuantity() {
-		return productQuantity;
+	public Integer getProductPurchaseQuantity() {
+		return productPurchaseQuantity;
 	}
 
-	public void setProductQuantity(Integer productQuantity) {
-		this.productQuantity = productQuantity;
+	public void setProductPurchaseQuantity(Integer productPurchaseQuantity) {
+		this.productPurchaseQuantity = productPurchaseQuantity;
+	}
+
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 
 	@Override
 	public String toString() {
 		return "BillModel [billId=" + billId + ", billTime=" + billTime + ", billDate=" + billDate + ", cashierName="
 				+ cashierName + ", productId=" + productId + ", productName=" + productName + ", productPrice="
-				+ productPrice + ", productManufacturer=" + productManufacturer + ", productQuantity=" + productQuantity
-				+ "]";
+				+ productPrice + ", productManufacturer=" + productManufacturer + ", productPurchaseQuantity="
+				+ productPurchaseQuantity + ", customerId=" + customerId + "]";
 	}
 
 	public BillModel(Integer billId, String billTime, String billDate, String cashierName, Integer productId,
-			String productName, Double productPrice, String productManufacturer, Integer productQuantity) {
+			String productName, Double productPrice, String productManufacturer, Integer productPurchaseQuantity,
+			Integer customerId) {
 		this.billId = billId;
 		this.billTime = billTime;
 		this.billDate = billDate;
@@ -121,7 +132,8 @@ public class BillModel {
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.productManufacturer = productManufacturer;
-		this.productQuantity = productQuantity;
+		this.productPurchaseQuantity = productPurchaseQuantity;
+		this.customerId = customerId;
 	}
 
 	public BillModel() {

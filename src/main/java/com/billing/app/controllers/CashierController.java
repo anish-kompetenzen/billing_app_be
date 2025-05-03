@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.billing.app.models.BillDTO;
+import com.billing.app.models.BillModel;
 import com.billing.app.models.CashierModel;
 import com.billing.app.services.CashierService;
 
@@ -62,9 +63,13 @@ public class CashierController {
 	}
 
 	@PostMapping("b")
-	public ResponseEntity<?> generateBill(@RequestParam String name, @RequestBody List<BillDTO> dto) {
-		System.out.println(name);
-		System.out.println(dto);
-		return new ResponseEntity<>(null, HttpStatus.OK);
+	public ResponseEntity<String> generateBill(@RequestParam String name, @RequestBody List<BillDTO> dto) {
+		return new ResponseEntity<String>(cashierService.generateBill(name, dto), HttpStatus.OK);
 	}
+
+	@GetMapping("/vb")
+	public ResponseEntity<List<BillModel>> viewBills() {
+		return new ResponseEntity<List<BillModel>>(cashierService.viewAllBills(), HttpStatus.OK);
+	}
+
 }

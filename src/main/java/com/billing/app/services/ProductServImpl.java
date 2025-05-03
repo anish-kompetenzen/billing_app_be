@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.billing.app.models.ProductModel;
-import com.billing.app.models.CashierModel;
 import com.billing.app.repositories.ProductRepository;
 
 @Service
@@ -78,6 +77,21 @@ public class ProductServImpl implements ProductService {
 				pdt.setProductQuantity(0);
 			} else {
 				pdt.setProductQuantity(pdt.getProductQuantity() - 1);
+			}
+			return repository.save(pdt);
+		}
+		return new ProductModel();
+	}
+
+	@Override
+	public ProductModel decreaseProductQty(Integer productId, Integer productPurchaseQuantity) {
+		Optional<ProductModel> op = repository.findById(productId);
+		if (op.isPresent()) {
+			ProductModel pdt = op.get();
+			if (pdt.getProductQuantity() <= 0) {
+				pdt.setProductQuantity(0);
+			} else {
+				pdt.setProductQuantity(pdt.getProductQuantity() - productPurchaseQuantity);
 			}
 			return repository.save(pdt);
 		}
